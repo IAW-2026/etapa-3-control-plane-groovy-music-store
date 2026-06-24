@@ -1,5 +1,6 @@
 import { fetchPayments, ErrorApi } from '@/lib/clientesApi'
 import Link from 'next/link'
+import { FormularioReembolso } from './FormularioReembolso'
 
 interface DetallePago {
     id: string
@@ -58,6 +59,9 @@ export default async function DetallePagoPage({
                     <p>${pago.monto.toLocaleString('es-AR')}</p>
                 </div>
             </div>
+            {pago.estado === 'aprobado' && (
+                <FormularioReembolso id={pago.id} />
+            )}
         </div>
     )
 }
