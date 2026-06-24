@@ -1,4 +1,5 @@
 import { fetchPayments, ErrorApi } from '@/lib/clientesApi'
+import Link from 'next/link'
 
 interface Transaccion {
     id: string
@@ -53,8 +54,12 @@ export default async function PagosPage() {
                 </thead>
                 <tbody>
                     {listado.datos.map((t) => (
-                        <tr key={t.id} className="border-b">
-                            <td className="py-2">{t.ordenId}</td>
+                        <tr key={t.id} className="border-b border-border">
+                            <td className="py-2">
+                                <Link href={`/pagos/${t.id}`} className="text-primary hover:underline">
+                                    {t.ordenId}
+                                </Link>
+                            </td>
                             <td className="py-2">{t.estado}</td>
                             <td className="py-2">${t.monto.toLocaleString('es-AR')}</td>
                             <td className="py-2">{new Date(t.fecha).toLocaleDateString('es-AR')}</td>
