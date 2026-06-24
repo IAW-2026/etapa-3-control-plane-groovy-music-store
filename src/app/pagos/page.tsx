@@ -44,7 +44,7 @@ export default async function PagosPage() {
             <h1 className="text-xl font-semibold mb-4">Pagos</h1>
             <table className="w-full text-sm border-collapse">
                 <thead>
-                    <tr className="border-b text-left">
+                    <tr className="border-b border-border text-left">
                         <th className="py-2">Orden</th>
                         <th className="py-2">Estado</th>
                         <th className="py-2">Monto total</th>
