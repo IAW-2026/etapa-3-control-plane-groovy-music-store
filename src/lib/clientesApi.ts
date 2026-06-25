@@ -47,3 +47,15 @@ async function clienteApi<T>(
 export function fetchPayments<T>(path: string, opciones?: OpcionesFetch) {
     return clienteApi<T>(process.env.PAYMENTS_API_URL!, path, opciones)
 }
+
+export function fetchBuyer<T>(path: string, opciones?: OpcionesFetch) {
+    return clienteApi<T>(process.env.BUYER_API_URL!, path, opciones)
+}
+
+export function fetchSeller<T>(path: string, opciones?: OpcionesFetch) {
+    return clienteApi<T>(process.env.SELLER_API_URL!, path, opciones)
+}
+
+export function fetchShipping<T>(path: string, opciones?: OpcionesFetch) {
+    return clienteApi<T>(process.env.SHIPPING_API_URL!, path, opciones)
+}
