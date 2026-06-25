@@ -25,22 +25,26 @@ export default async function DetallePagoPage({
         const mensaje =
             error instanceof ErrorApi ? error.message : 'Error al conectar con Payments'
         return (
-            <div className="p-8">
+            <div className="max-w-7xl mx-auto">
                 <Link href="/payments" className="text-sm text-muted hover:underline">
                     ← Volver a pagos
                 </Link>
-                <h1 className="text-xl font-semibold mt-4 mb-4">Detalle de pago</h1>
+                <h1 className="font-syne text-3xl font-semibold text-foreground mt-4 mb-6">
+                    Detalle de pago
+                </h1>
                 <p className="text-red-600">{mensaje}</p>
             </div>
         )
     }
 
     return (
-        <div className="p-8">
+        <div className="max-w-7xl mx-auto">
             <Link href="/payments" className="text-sm text-muted hover:underline">
                 ← Volver a pagos
             </Link>
-            <h1 className="text-xl font-semibold mt-4 mb-6">Detalle de pago</h1>
+            <h1 className="font-syne text-3xl font-semibold text-foreground mt-4 mb-6">
+                Detalle de pago
+            </h1>
 
             <div className="bg-card border border-border rounded-lg p-6 max-w-md space-y-3">
                 <div>
@@ -60,6 +64,7 @@ export default async function DetallePagoPage({
                     <p>${pago.monto.toLocaleString('es-AR')}</p>
                 </div>
             </div>
+
             {pago.estado === 'aprobado' && (
                 <>
                     <FormularioReembolso id={pago.id} />
