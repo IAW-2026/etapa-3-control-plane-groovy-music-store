@@ -1,6 +1,7 @@
 import { fetchPayments, ErrorApi } from '@/lib/clientesApi'
 import Link from 'next/link'
 import { FormularioReembolso } from './FormularioReembolso'
+import { FormularioRelease } from './FormularioRelease'
 
 interface DetallePago {
     id: string
@@ -60,7 +61,10 @@ export default async function DetallePagoPage({
                 </div>
             </div>
             {pago.estado === 'aprobado' && (
-                <FormularioReembolso id={pago.id} />
+                <>
+                    <FormularioReembolso id={pago.id} />
+                    <FormularioRelease id={pago.id} />
+                </>
             )}
         </div>
     )
