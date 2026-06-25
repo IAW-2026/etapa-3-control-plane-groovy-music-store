@@ -25,7 +25,7 @@ export default async function DetallePagoPage({
             error instanceof ErrorApi ? error.message : 'Error al conectar con Payments'
         return (
             <div className="p-8">
-                <Link href="/pagos" className="text-sm text-muted hover:underline">
+                <Link href="/payments" className="text-sm text-muted hover:underline">
                     ← Volver a pagos
                 </Link>
                 <h1 className="text-xl font-semibold mt-4 mb-4">Detalle de pago</h1>
@@ -36,7 +36,7 @@ export default async function DetallePagoPage({
 
     return (
         <div className="p-8">
-            <Link href="/pagos" className="text-sm text-muted hover:underline">
+            <Link href="/payments" className="text-sm text-muted hover:underline">
                 ← Volver a pagos
             </Link>
             <h1 className="text-xl font-semibold mt-4 mb-6">Detalle de pago</h1>

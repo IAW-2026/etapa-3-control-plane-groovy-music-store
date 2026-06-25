@@ -34,8 +34,8 @@ export async function emitirReembolso(
             { method: 'POST', body: { monto, motivo } }
         )
 
-        revalidatePath(`/pagos/${id}`)
-        revalidatePath('/pagos')
+        revalidatePath(`/payments/${id}`)
+        revalidatePath('/payments')
 
         return { exito: resultado.mensaje }
     } catch (error) {
