@@ -69,7 +69,7 @@ export default async function BuyerPage() {
                 </div>
                 
                 <a 
-                    href="https://proyecto-c-buyer2-groovy-music-store.vercel.app/admin" 
+                    href={`${process.env.BUYER_API_URL}/sign-in`}
                     target="_blank" 
                     rel="noopener noreferrer"
                     aria-label="Abrir el panel de administración externo de la Buyer App en una nueva pestaña"
