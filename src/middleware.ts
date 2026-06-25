@@ -1,22 +1,23 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
 
-
-// Protegemos todas las rutas excepto el acceso denegado
-const isProtectedRoute = createRouteMatcher([
-    '/((?!sin-acceso).*)'
+// 1. Definimos explícitamente cuáles son las rutas públicas (el (.*) incluye cualquier parámetro)
+const isPublicRoute = createRouteMatcher([
+    '/sign-in(.*)', 
+    '/sin-acceso(.*)'
 ])
 
 export default clerkMiddleware(async (auth, req) => {
-    if (isProtectedRoute(req)) {
+    // 2. Si la ruta actual NO es pública, aplicamos las reglas de protección
+    if (!isPublicRoute(req)) {
         const session = await auth()
 
-        // Si no está logueado, lo manda al login de Clerk
+        // Si no está logueado, lo mandamos a iniciar sesión
         if (!session.userId) {
-            await auth.protect()
+            return session.redirectToSignIn()
         }
 
-        // Chequeamos que tenga el rol super_admin en el token (metadata)
+        // Chequeamos el rol super_admin
         const hasSuperAdminRole = session.sessionClaims?.roles?.includes('super_admin') ?? false
 
         if (!hasSuperAdminRole) {
