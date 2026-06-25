@@ -43,3 +43,37 @@ export async function emitirReembolso(
         return { error: mensaje }
     }
 }
+
+interface EstadoRelease {
+    error?: string
+    exito?: string
+}
+
+interface RespuestaRelease {
+    transaccionId: string
+    estado: string
+    mensaje: string
+}
+
+export async function liberarFondos(
+    id: string,
+    _estadoAnterior: EstadoRelease,
+    formData: FormData
+): Promise<EstadoRelease> {
+    const motivo = formData.get('motivo')?.toString() || undefined
+
+    try {
+        const resultado = await fetchPayments<RespuestaRelease>(
+            `/api/payments/${id}/release`,
+            { method: 'POST', body: { motivo } }
+        )
+
+        revalidatePath(`/payments/${id}`)
+        revalidatePath('/payments')
+
+        return { exito: resultado.mensaje }
+    } catch (error) {
+        const mensaje = error instanceof ErrorApi ? error.message : 'Error al liberar los fondos'
+        return { error: mensaje }
+    }
+}
