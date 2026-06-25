@@ -29,7 +29,7 @@ export default async function PagosPage() {
         listado = await fetchPayments<ListadoPagos>('/api/payments')
         console.log('Respuesta real de Payments:', JSON.stringify(listado, null, 2))  // ← temporal
     } catch (error) {
-        console.error('Error real en /pagos:', error) // ← temporal
+        console.error('Error real en /payments:', error) // ← temporal
         const mensaje =
             error instanceof ErrorApi ? error.message : 'Error al conectar con Payments'
         return (
@@ -56,7 +56,7 @@ export default async function PagosPage() {
                     {listado.datos.map((t) => (
                         <tr key={t.id} className="border-b border-border">
                             <td className="py-2">
-                                <Link href={`/pagos/${t.id}`} className="text-primary hover:underline">
+                                <Link href={`/payments/${t.id}`} className="text-primary hover:underline">
                                     {t.ordenId}
                                 </Link>
                             </td>
