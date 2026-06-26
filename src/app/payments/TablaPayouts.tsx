@@ -66,7 +66,7 @@ export default async function TablaPayouts({ pagina, limite }: TablaPayoutsProps
     // --- EMPTY STATE ---
     if (datos.length === 0) {
         return (
-            <div className="p-8 text-center text-foreground/60 font-dm border border-border rounded-xl bg-background shadow-sm">
+            <div className="p-8 text-center text-foreground/80 font-dm border border-border rounded-xl bg-background shadow-sm">
                 <svg className="mx-auto mb-3 w-10 h-10 text-foreground/30" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                 </svg>
@@ -83,7 +83,7 @@ export default async function TablaPayouts({ pagina, limite }: TablaPayoutsProps
             <div className="overflow-x-auto hidden md:block">
                 <table className="w-full text-left border-collapse">
                     <thead>
-                        <tr className="border-b-2 border-border text-xs uppercase tracking-wider text-foreground/60 bg-muted/20">
+                        <tr className="border-b-2 border-border text-xs uppercase tracking-wider text-foreground/80 bg-muted/20">
                             <th scope="col" className="p-4 font-semibold">Seller ID</th>
                             <th scope="col" className="p-4 font-semibold text-right">Balance Retenido</th>
                             <th scope="col" className="p-4 font-semibold text-right">Balance Acreditado</th>
@@ -95,13 +95,13 @@ export default async function TablaPayouts({ pagina, limite }: TablaPayoutsProps
                             const total = b.balance_retenido + b.balance_acreditado
                             return (
                                 <tr key={b.seller_id} className="hover:bg-muted/30 transition-colors">
-                                    <td className="p-4 font-mono text-xs text-primary font-medium break-all select-all">
+                                    <td className="p-4 font-mono text-xs text-[#B83A15] font-medium break-all select-all">
                                         {b.seller_id}
                                     </td>
-                                    <td className="p-4 text-right text-amber-600 font-medium">
+                                    <td className="p-4 text-right text-amber-700 font-medium">
                                         {formatoARS(b.balance_retenido)}
                                     </td>
-                                    <td className="p-4 text-right text-emerald-600 font-medium">
+                                    <td className="p-4 text-right text-emerald-700 font-medium">
                                         {formatoARS(b.balance_acreditado)}
                                     </td>
                                     <td className="p-4 text-right font-bold text-foreground">
@@ -121,20 +121,20 @@ export default async function TablaPayouts({ pagina, limite }: TablaPayoutsProps
                     return (
                         <div key={b.seller_id} className="bg-background border border-border p-4 rounded-xl shadow-sm space-y-3">
                             <div>
-                                <span className="text-xs text-foreground/50 uppercase font-bold tracking-wider">Seller ID</span>
-                                <p className="font-mono text-xs text-primary font-medium break-all select-all mt-0.5">{b.seller_id}</p>
+                                <span className="text-xs text-foreground/80 uppercase font-bold tracking-wider">Seller ID</span>
+                                <p className="font-mono text-xs text-[#B83A15] font-medium break-all select-all mt-0.5">{b.seller_id}</p>
                             </div>
                             <div className="grid grid-cols-3 gap-2 border-t border-border pt-3">
                                 <div>
-                                    <span className="text-[10px] text-foreground/50 uppercase font-bold tracking-wider">Retenido</span>
-                                    <p className="text-sm font-medium text-amber-600">{formatoARS(b.balance_retenido)}</p>
+                                    <span className="text-xs text-foreground/80 uppercase font-bold tracking-wider">Retenido</span>
+                                    <p className="text-sm font-medium text-amber-700">{formatoARS(b.balance_retenido)}</p>
                                 </div>
                                 <div>
-                                    <span className="text-[10px] text-foreground/50 uppercase font-bold tracking-wider">Acreditado</span>
-                                    <p className="text-sm font-medium text-emerald-600">{formatoARS(b.balance_acreditado)}</p>
+                                    <span className="text-xs text-foreground/80 uppercase font-bold tracking-wider">Acreditado</span>
+                                    <p className="text-sm font-medium text-emerald-700">{formatoARS(b.balance_acreditado)}</p>
                                 </div>
                                 <div>
-                                    <span className="text-[10px] text-foreground/50 uppercase font-bold tracking-wider">Total</span>
+                                    <span className="text-xs text-foreground/80 uppercase font-bold tracking-wider">Total</span>
                                     <p className="text-sm font-bold text-foreground">{formatoARS(total)}</p>
                                 </div>
                             </div>
@@ -145,7 +145,7 @@ export default async function TablaPayouts({ pagina, limite }: TablaPayoutsProps
 
             {/* PAGINACIÓN */}
             <div className="flex items-center justify-between border-t border-border pt-4 px-1">
-                <span className="text-sm text-foreground/70">
+                <span className="text-sm text-foreground/80">
                     Página <strong className="text-foreground">{paginacion.pagina}</strong> de{' '}
                     <strong className="text-foreground">{paginacion.totalPaginas}</strong>
                     <span className="hidden sm:inline"> — {paginacion.total} vendedores</span>
@@ -159,7 +159,7 @@ export default async function TablaPayouts({ pagina, limite }: TablaPayoutsProps
                             ← Anterior
                         </Link>
                     ) : (
-                        <span className="px-3 py-1.5 text-sm font-medium border border-border rounded-lg opacity-40 cursor-not-allowed bg-muted/20">
+                        <span className="px-3 py-1.5 text-sm font-medium border border-border rounded-lg text-foreground/70 cursor-not-allowed bg-muted/20">
                             ← Anterior
                         </span>
                     )}
@@ -171,7 +171,7 @@ export default async function TablaPayouts({ pagina, limite }: TablaPayoutsProps
                             Siguiente →
                         </Link>
                     ) : (
-                        <span className="px-3 py-1.5 text-sm font-medium border border-border rounded-lg opacity-40 cursor-not-allowed bg-muted/20">
+                        <span className="px-3 py-1.5 text-sm font-medium border border-border rounded-lg text-foreground/70 cursor-not-allowed bg-muted/20">
                             Siguiente →
                         </span>
                     )}
