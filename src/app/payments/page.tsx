@@ -1,5 +1,8 @@
+import { Suspense } from 'react'
 import { fetchPayments, ErrorApi } from '@/lib/clientesApi'
 import Link from 'next/link'
+import TablaPayouts from './TablaPayouts'
+import TablaPayoutsSkeleton from './TablaPayoutsSkeleton'
 
 export const metadata = {
     title: 'Gestión de Pagos - Control Plane',
@@ -62,7 +65,13 @@ function colorEstadoPago(estado: string) {
     return 'bg-slate-50 text-slate-700 border-slate-200';
 }
 
-export default async function PaymentsPage() {
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+
+export default async function PaymentsPage(props: { searchParams: SearchParams }) {
+    const searchParams = await props.searchParams
+    const paginaPayouts = Number(searchParams?.pagina) || 1
+    const limitePayouts = Number(searchParams?.limite) || 20
+
     const [listado, reclamos] = await Promise.all([obtenerListado(), obtenerReclamos()])
 
     return (
@@ -78,10 +87,10 @@ export default async function PaymentsPage() {
                         Monitorización de transacciones financieras, liquidaciones y resolución de disputas.
                     </p>
                 </div>
-                
-                <a 
-                    href="https://proyecto-c-payments-groovy-music-store.vercel.app/admin" // URL ilustrativa
-                    target="_blank" 
+
+                <a
+                    href="https://proyecto-c-payments-groovy-music-store.vercel.app/sign-in" // URL ilustrativa
+                    target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Abrir el panel financiero externo de la Payments App en una nueva pestaña"
                     className="inline-flex items-center justify-center font-dm text-sm font-bold text-primary-foreground bg-primary hover:bg-primary/90 px-6 py-3 rounded-xl transition-all shadow-md focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none w-full sm:w-auto"
@@ -102,36 +111,33 @@ export default async function PaymentsPage() {
                             Métricas de Disputas
                         </h2>
                     </div>
-                    
+
                     {reclamos.ok ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-dm">
                             <div className="bg-background border border-border rounded-xl p-5 shadow-sm">
                                 <p className="text-xs uppercase tracking-wider font-bold text-foreground/60 mb-1">Total Reclamos</p>
                                 <p className="text-3xl font-syne font-bold text-foreground">{reclamos.data.totalReclamos}</p>
                             </div>
-                            
-                            <div className={`rounded-xl p-5 shadow-sm border transition-colors ${
-                                reclamos.data.sinResolver > 0 
-                                    ? 'bg-red-50/50 border-red-200' 
-                                    : 'bg-background border-border'
-                            }`}>
-                                <p className={`text-xs uppercase tracking-wider font-bold mb-1 ${
-                                    reclamos.data.sinResolver > 0 ? 'text-red-600' : 'text-foreground/60'
+
+                            <div className={`rounded-xl p-5 shadow-sm border transition-colors ${reclamos.data.sinResolver > 0
+                                ? 'bg-red-50/50 border-red-200'
+                                : 'bg-background border-border'
                                 }`}>
+                                <p className={`text-xs uppercase tracking-wider font-bold mb-1 ${reclamos.data.sinResolver > 0 ? 'text-red-600' : 'text-foreground/60'
+                                    }`}>
                                     Sin Resolver
                                 </p>
-                                <p className={`text-3xl font-syne font-bold ${
-                                    reclamos.data.sinResolver > 0 ? 'text-red-700' : 'text-foreground'
-                                }`}>
+                                <p className={`text-3xl font-syne font-bold ${reclamos.data.sinResolver > 0 ? 'text-red-700' : 'text-foreground'
+                                    }`}>
                                     {reclamos.data.sinResolver}
                                 </p>
                             </div>
-                            
+
                             <div className="bg-background border border-border rounded-xl p-5 shadow-sm">
                                 <p className="text-xs uppercase tracking-wider font-bold text-foreground/60 mb-1">Resueltos</p>
                                 <p className="text-3xl font-syne font-bold text-emerald-600">{reclamos.data.resueltos}</p>
                             </div>
-                            
+
                             <div className="bg-background border border-border rounded-xl p-5 shadow-sm">
                                 <p className="text-xs uppercase tracking-wider font-bold text-foreground/60 mb-1">Tiempo Promedio Resolucion</p>
                                 <p className="text-3xl font-syne font-bold text-foreground flex items-baseline gap-1">
@@ -154,7 +160,7 @@ export default async function PaymentsPage() {
                             Historial de Transacciones
                         </h2>
                     </div>
-                    
+
                     {listado.ok ? (
                         <div className="space-y-4 font-dm">
                             {/* VISTA ESCRITORIO */}
@@ -171,7 +177,7 @@ export default async function PaymentsPage() {
                                         </tr>
                                     </thead>
                                     <tbody className="text-sm divide-y divide-border">
-                                        {listado.data.datos.map((t) => (
+                                        {listado.data.datos.slice(0, 10).map((t) => (
                                             <tr key={t.id} className="hover:bg-muted/30 transition-colors group">
                                                 {/* Se agregaron utilidades break-all y select-all, mostrando el ID completo */}
                                                 <td className="p-4 font-mono text-xs break-all select-all">
@@ -198,7 +204,7 @@ export default async function PaymentsPage() {
 
                             {/* VISTA MÓVIL */}
                             <div className="md:hidden space-y-4">
-                                {listado.data.datos.map((t) => (
+                                {listado.data.datos.slice(0, 10).map((t) => (
                                     <div key={t.id} className="bg-card border border-border p-4 rounded-xl shadow-sm flex flex-col gap-3">
                                         <div className="flex justify-between items-start">
                                             <div className="max-w-[60%]">
@@ -231,6 +237,20 @@ export default async function PaymentsPage() {
                             <strong>Error de transacciones:</strong> {listado.mensaje}
                         </div>
                     )}
+                </section>
+
+                {/* SECCIÓN DE BALANCES DE VENDEDORES (Payouts) */}
+                <section aria-labelledby="balances-titulo" className="bg-card rounded-2xl p-4 md:p-6 border border-border shadow-sm">
+                    <div className="mb-6 flex items-center justify-between">
+                        <h2 id="balances-titulo" className="font-syne text-xl md:text-2xl font-bold text-foreground flex items-center gap-2">
+                            <span className="w-2 h-6 bg-purple-500 rounded-full inline-block" aria-hidden="true"></span>
+                            Balances de Vendedores
+                        </h2>
+                    </div>
+
+                    <Suspense fallback={<TablaPayoutsSkeleton />}>
+                        <TablaPayouts pagina={paginaPayouts} limite={limitePayouts} />
+                    </Suspense>
                 </section>
             </div>
         </main>
