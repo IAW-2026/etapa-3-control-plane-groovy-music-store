@@ -44,7 +44,7 @@ async function clienteApi<T>(
             Authorization: `Bearer ${token}`, 
         },
         body: opciones.body ? JSON.stringify(opciones.body) : undefined,
-        cache: 'no-store',
+        next: { revalidate: 1 },
     })
 
     const datos = await respuesta.json().catch(() => null)

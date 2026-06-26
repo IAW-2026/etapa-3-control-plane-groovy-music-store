@@ -73,7 +73,7 @@ export default function TablaOrdenes({
             <div className="grid gap-4 md:block overflow-x-auto">
                 <table className="w-full text-left border-collapse hidden md:table">
                     <thead>
-                        <tr className="border-b-2 border-border text-xs uppercase tracking-wider text-foreground/60 bg-muted/20">
+                        <tr className="border-b-2 border-border text-xs uppercase tracking-wider text-foreground/80 bg-muted/20">
                             <th scope="col" className="p-4 font-semibold">Nro Orden</th>
                             <th scope="col" className="p-4 font-semibold">Monto</th>
                             <th scope="col" className="p-4 font-semibold">Logística</th>

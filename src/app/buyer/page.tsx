@@ -2,6 +2,8 @@ import { fetchBuyer } from "@/lib/clientesApi";
 import TablaOrdenes from "./TablaOrdenes";
 import TablaUsuarios from "./TablaUsuarios";
 
+export const revalidate = 1;
+
 export const metadata = {
     title: 'Gestión de Compradores - Control Plane',
     description: 'Panel de administración global para usuarios y órdenes de la Buyer App.',
@@ -61,7 +63,7 @@ export default async function BuyerPage() {
                 <div className="space-y-2">
                     <h1 className="font-syne text-3xl md:text-4xl font-bold text-foreground tracking-tight">
                         Administración
-                        <span className="block text-primary text-xl md:text-2xl font-medium mt-1">Buyer App</span>
+                        <span className="block text-primary-dark text-xl md:text-2xl font-medium mt-1">Buyer App</span>
                     </h1>
                     <p className="font-dm text-sm md:text-base text-foreground/80 max-w-lg">
                         Control operativo de órdenes de compra y estado de cuentas de usuarios del ecosistema.
@@ -73,7 +75,7 @@ export default async function BuyerPage() {
                     target="_blank" 
                     rel="noopener noreferrer"
                     aria-label="Abrir el panel de administración externo de la Buyer App en una nueva pestaña"
-                    className="inline-flex items-center justify-center font-dm text-sm font-bold text-primary-foreground bg-primary hover:bg-primary/90 px-6 py-3 rounded-xl transition-all shadow-md focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none w-full sm:w-auto"
+                    className="inline-flex items-center justify-center font-dm text-sm font-bold text-white bg-primary-dark hover:bg-primary px-6 py-3 rounded-xl transition-all shadow-md focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none w-full sm:w-auto"
                 >
                     Panel Externo
                     <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

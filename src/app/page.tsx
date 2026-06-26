@@ -2,6 +2,8 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { fetchShipping, fetchBuyer, fetchSeller, fetchPayments } from "@/lib/clientesApi";
 
+export const revalidate = 1;
+
 export const metadata = {
     title: 'Dashboard - Control Plane',
     description: 'Panel principal del ecosistema Groovy Music Store.',
@@ -15,14 +17,14 @@ export default function DashboardPage() {
                 <div className="space-y-1">
                     <h1 className="font-syne text-2xl md:text-3xl font-bold text-foreground tracking-tight">
                         Panel de Control Global
-                        <span className="block text-primary text-lg md:text-xl font-medium">Ecosistema Groovy</span>
+                        <span className="block text-primary-dark text-lg md:text-xl font-medium">Ecosistema Groovy</span>
                     </h1>
                     <p className="font-dm text-xs md:text-sm text-foreground/80 max-w-lg">
                         Visión consolidada y estado operativo de todos los microservicios.
                     </p>
                 </div>
                 
-                <div className="hidden sm:flex items-center gap-2 font-dm text-xs text-foreground/60 bg-muted/30 px-3 py-1.5 rounded-lg border border-border">
+                <div className="hidden sm:flex items-center gap-2 font-dm text-xs text-foreground/80 bg-muted/30 px-3 py-1.5 rounded-lg border border-border">
                     <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -73,7 +75,7 @@ async function ShippingStats() {
                 subtexto="Pendientes de despacho"
                 linkHref="/shipping"
                 appName="Shipping App"
-                colorBadge="bg-blue-500/10 text-blue-700"
+                colorBadge="bg-blue-500/10 text-blue-800"
                 iconColor="bg-blue-500"
             />
         );
@@ -98,7 +100,7 @@ async function BuyerStats() {
                 subtexto="Usuarios registrados"
                 linkHref="/buyer"
                 appName="Buyer App"
-                colorBadge="bg-emerald-500/10 text-emerald-700"
+                colorBadge="bg-emerald-500/10 text-emerald-800"
                 iconColor="bg-emerald-500"
             />
         );
@@ -123,7 +125,7 @@ async function SellerStats() {
                 subtexto="En el catálogo global"
                 linkHref="/seller"
                 appName="Seller App"
-                colorBadge="bg-purple-500/10 text-purple-700"
+                colorBadge="bg-purple-500/10 text-purple-800"
                 iconColor="bg-purple-500"
             />
         );
@@ -148,7 +150,7 @@ async function PaymentsStats() {
                 subtexto="Operaciones monetarias"
                 linkHref="/payments"
                 appName="Payments App"
-                colorBadge="bg-orange-500/10 text-orange-700"
+                colorBadge="bg-orange-500/10 text-orange-900"
                 iconColor="bg-orange-500"
             />
         );
@@ -174,7 +176,7 @@ function StatCard({ titulo, valor, subtexto, linkHref, appName, colorBadge, icon
     return (
         <div className="bg-card rounded-xl p-4 md:p-5 shadow-sm border border-border flex flex-col hover:shadow-md transition-all hover:-translate-y-1 relative group">
             <div className="flex justify-between items-start mb-2">
-                <h3 className="font-dm text-[11px] md:text-xs font-bold text-foreground/60 uppercase tracking-widest flex items-center gap-2">
+                <h3 className="font-dm text-[11px] md:text-xs font-bold text-foreground/80 uppercase tracking-widest flex items-center gap-2">
                     <span className={`w-1.5 h-3.5 rounded-full ${iconColor}`}></span>
                     {titulo}
                 </h3>
@@ -186,14 +188,14 @@ function StatCard({ titulo, valor, subtexto, linkHref, appName, colorBadge, icon
             <div className="font-syne text-3xl md:text-4xl font-bold text-foreground mb-0.5 tracking-tight">
                 {valor}
             </div>
-            <p className="font-dm text-xs md:text-sm text-foreground/70 mb-3">
+            <p className="font-dm text-xs md:text-sm text-foreground/80 mb-3">
                 {subtexto}
             </p>
             
             <div className="mt-auto border-t border-border pt-3">
                 <Link 
                     href={linkHref}
-                    className="inline-flex items-center font-dm text-xs md:text-sm text-primary font-bold hover:text-primary/80 transition-colors"
+                    className="inline-flex items-center font-dm text-xs md:text-sm text-primary-dark font-bold hover:text-primary transition-colors"
                     aria-label={`Ver detalle de ${titulo} en la aplicación ${appName}`}
                 >
                     Ver detalle 
@@ -249,7 +251,7 @@ function CardSkeleton({ titulo }: { titulo: string }) {
     return (
         <div className="bg-card rounded-xl p-4 md:p-5 shadow-sm border border-border flex flex-col animate-pulse min-h-[150px]">
             <div className="flex justify-between items-start mb-4">
-                <h3 className="font-dm text-[11px] md:text-xs font-bold text-foreground/40 uppercase tracking-widest flex items-center gap-2">
+                <h3 className="font-dm text-[11px] md:text-xs font-bold text-foreground/70 uppercase tracking-widest flex items-center gap-2">
                     <div className="w-1.5 h-3.5 rounded-full bg-muted"></div>
                     {titulo}
                 </h3>

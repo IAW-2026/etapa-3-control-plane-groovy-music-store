@@ -4,6 +4,8 @@ import TablaEmpresas from './TablaEmpresas';
 import TablaOperadores from './TablaOperadores';
 import { cargarOperadoresAction } from './actions';
 
+export const revalidate = 1;
+
 export const metadata = {
     title: 'Gestión de Envíos - Control Plane',
     description: 'Monitoreo operativo de logística, empresas de transporte y estados de entrega.',
@@ -96,9 +98,9 @@ export default async function ShippingPage() {
                 <div className="space-y-2">
                     <h1 className="font-syne text-3xl md:text-4xl font-bold text-foreground tracking-tight">
                         Administración
-                        <span className="block text-blue-700 text-xl md:text-2xl font-bold mt-1">Shipping App</span>
+                        <span className="block text-primary-dark text-xl md:text-2xl font-bold mt-1">Shipping App</span>
                     </h1>
-                    <p className="font-dm text-base text-slate-800 max-w-lg dark:text-slate-200">
+                    <p className="font-dm text-sm md:text-base text-foreground/80 max-w-lg">
                         Monitoreo en tiempo real de despachos, códigos de seguimiento y cumplimiento de plazos logísticos.
                     </p>
                 </div>
@@ -108,7 +110,7 @@ export default async function ShippingPage() {
                     target="_blank" 
                     rel="noopener noreferrer"
                     aria-label="Abrir el panel de administración externo de la Buyer App en una nueva pestaña"
-                    className="inline-flex items-center justify-center font-dm text-sm font-bold text-primary-foreground bg-primary hover:bg-primary/90 px-6 py-3 rounded-xl transition-all shadow-md focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none w-full sm:w-auto"
+                    className="inline-flex items-center justify-center font-dm text-sm font-bold text-white bg-primary-dark hover:bg-primary px-6 py-3 rounded-xl transition-all shadow-md focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none w-full sm:w-auto"
                 >
                     Panel Externo
                     <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

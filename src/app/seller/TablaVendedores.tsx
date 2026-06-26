@@ -58,7 +58,7 @@ export default function TablaVendedores({
             <div className="grid gap-4 md:block overflow-x-auto">
                 <table className="w-full text-left border-collapse hidden md:table">
                     <thead>
-                        <tr className="border-b-2 border-border text-xs uppercase tracking-wider text-foreground/60 bg-muted/20">
+                        <tr className="border-b-2 border-border text-xs uppercase tracking-wider text-foreground/80 bg-muted/20">
                             <th scope="col" className="p-4 font-semibold">Vendedor</th>
                             <th scope="col" className="p-4 font-semibold">Ubicación</th>
                             <th scope="col" className="p-4 font-semibold text-center">Productos Activos</th>
@@ -91,14 +91,14 @@ export default function TablaVendedores({
                         <div key={vendedor.id} className="bg-card border border-border p-4 rounded-xl shadow-sm flex flex-col gap-3">
                             <div className="flex justify-between items-start">
                                 <div>
-                                    <span className="text-xs text-foreground/60 uppercase font-bold tracking-wider">Vendedor</span>
+                                    <span className="text-xs text-foreground/80 uppercase font-bold tracking-wider">Vendedor</span>
                                     <p className="font-medium text-sm">{vendedor.nombre}</p>
-                                    <p className="text-xs text-foreground/60 mt-0.5">
+                                    <p className="text-xs text-foreground/80 mt-0.5">
                                         {vendedor.ciudad && vendedor.provincia ? `${vendedor.ciudad}, ${vendedor.provincia}` : ''}
                                     </p>
                                 </div>
                                 <div className="text-right">
-                                    <span className="text-xs text-foreground/60 uppercase font-bold tracking-wider">Ventas</span>
+                                    <span className="text-xs text-foreground/80 uppercase font-bold tracking-wider">Ventas</span>
                                     <p className="font-bold text-lg">{vendedor.total_ventas}</p>
                                 </div>
                             </div>
