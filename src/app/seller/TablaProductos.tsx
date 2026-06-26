@@ -106,7 +106,7 @@ export default function TablaProductos({
             <div className="grid gap-4 md:block overflow-x-auto">
                 <table className="w-full text-left border-collapse hidden md:table">
                     <thead>
-                        <tr className="border-b-2 border-border text-xs uppercase tracking-wider text-foreground/60 bg-muted/20">
+                        <tr className="border-b-2 border-border text-xs uppercase tracking-wider text-foreground/80 bg-muted/20">
                             <th scope="col" className="p-4 font-semibold">Producto</th>
                             <th scope="col" className="p-4 font-semibold">Precio</th>
                             <th scope="col" className="p-4 font-semibold">Stock</th>
@@ -201,8 +201,8 @@ export default function TablaProductos({
                                                     onClick={() => handleAlternarEstado(producto.id, producto.activo)}
                                                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all inline-block ${
                                                         producto.activo 
-                                                            ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200 border border-emerald-200' 
-                                                            : 'bg-red-100 text-red-700 hover:bg-red-200 border border-red-200'
+                                                            ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200 border border-emerald-200' 
+                                                            : 'bg-red-100 text-red-800 hover:bg-red-200 border border-red-200'
                                                     } disabled:opacity-50`}
                                                 >
                                                     {cargandoId === producto.id ? '...' : (producto.activo ? 'Activo' : 'Inactivo')}
@@ -222,11 +222,11 @@ export default function TablaProductos({
                         <div key={producto.id} className="bg-card border border-border p-4 rounded-xl shadow-sm flex flex-col gap-3">
                             <div className="flex justify-between items-start">
                                 <div>
-                                    <span className="text-xs text-foreground/60 uppercase font-bold tracking-wider">Producto</span>
+                                    <span className="text-xs text-foreground/80 uppercase font-bold tracking-wider">Producto</span>
                                     <p className="font-medium text-sm">{producto.titulo}</p>
                                 </div>
                                 <div className="text-right">
-                                    <span className="text-xs text-foreground/60 uppercase font-bold tracking-wider">Precio</span>
+                                    <span className="text-xs text-foreground/80 uppercase font-bold tracking-wider">Precio</span>
                                     <p className="font-bold text-lg">${Number(producto.precio).toFixed(2)}</p>
                                 </div>
                             </div>
@@ -239,7 +239,7 @@ export default function TablaProductos({
                                     disabled={cargandoId === producto.id || cargandoPagina}
                                     onClick={() => handleAlternarEstado(producto.id, producto.activo)}
                                     className={`px-3 py-1 rounded text-xs font-bold ${
-                                        producto.activo ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'
+                                        producto.activo ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'
                                     }`}
                                 >
                                     {cargandoId === producto.id ? '...' : (producto.activo ? 'Activo' : 'Inactivo')}

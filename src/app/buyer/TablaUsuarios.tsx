@@ -72,7 +72,7 @@ export default function TablaUsuarios({
             <div className="grid gap-4 md:block overflow-x-auto">
                 <table className="w-full text-left border-collapse hidden md:table">
                     <thead>
-                        <tr className="border-b-2 border-border text-xs uppercase tracking-wider text-foreground/60 bg-muted/20">
+                        <tr className="border-b-2 border-border text-xs uppercase tracking-wider text-foreground/80 bg-muted/20">
                             <th scope="col" className="p-4 font-semibold">Comprador</th>
                             <th scope="col" className="p-4 font-semibold">Contacto</th>
                             <th scope="col" className="p-4 font-semibold">Estado de Cuenta</th>
@@ -87,8 +87,8 @@ export default function TablaUsuarios({
                                 <td className="p-4">
                                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border ${
                                         usuario.activo 
-                                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200' 
-                                        : 'bg-red-50 text-red-700 border-red-200'
+                                        ? 'bg-emerald-50 text-emerald-800 border-emerald-200' 
+                                        : 'bg-red-50 text-red-800 border-red-200'
                                     }`}>
                                         <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${usuario.activo ? 'bg-emerald-500' : 'bg-red-500'}`}></span>
                                         {usuario.activo ? 'Activo' : 'Suspendido'}
@@ -102,8 +102,8 @@ export default function TablaUsuarios({
                                         aria-label={`${usuario.activo ? 'Suspender' : 'Activar'} cuenta de ${usuario.nombre}`}
                                         className={`inline-flex items-center justify-center px-4 py-1.5 rounded-lg text-xs font-bold transition-all disabled:opacity-50 focus:ring-2 focus:ring-offset-1 focus:outline-none w-28 ${
                                             usuario.activo 
-                                                ? 'bg-background text-red-600 hover:bg-red-50 border border-red-200 focus:ring-red-500' 
-                                                : 'bg-background text-emerald-600 hover:bg-emerald-50 border border-emerald-200 focus:ring-emerald-500'
+                                                ? 'bg-background text-red-800 hover:bg-red-50 border border-red-200 focus:ring-red-500' 
+                                                : 'bg-background text-emerald-800 hover:bg-emerald-50 border border-emerald-200 focus:ring-emerald-500'
                                         }`}
                                     >
                                         {cargandoId === usuario.clerk_id ? (
@@ -127,8 +127,8 @@ export default function TablaUsuarios({
                             <div className="flex justify-between items-center border-t border-border pt-3 mt-1">
                                 <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold border ${
                                     usuario.activo 
-                                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200' 
-                                    : 'bg-red-50 text-red-700 border-red-200'
+                                    ? 'bg-emerald-50 text-emerald-800 border-emerald-200' 
+                                    : 'bg-red-50 text-red-800 border-red-200'
                                 }`}>
                                     {usuario.activo ? 'Activo' : 'Suspendido'}
                                 </span>
@@ -138,8 +138,8 @@ export default function TablaUsuarios({
                                     onClick={() => handleToggleActivo(usuario.clerk_id, usuario.activo)}
                                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all disabled:opacity-50 ${
                                         usuario.activo 
-                                            ? 'bg-background text-red-600 border border-red-200' 
-                                            : 'bg-background text-emerald-600 border border-emerald-200'
+                                            ? 'bg-background text-red-800 border border-red-200' 
+                                            : 'bg-background text-emerald-800 border border-emerald-200'
                                     }`}
                                 >
                                     {cargandoId === usuario.clerk_id ? 'Procesando...' : usuario.activo ? 'Suspender' : 'Activar'}

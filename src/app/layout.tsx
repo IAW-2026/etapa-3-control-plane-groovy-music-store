@@ -26,7 +26,7 @@ export default async function RootLayout({
     return (
         <ClerkProvider>
             <html lang="es">
-                <body className={`flex min-h-screen bg-background font-dm flex-col md:flex-row m-0 ${cormorant.variable} ${syne.variable} ${dmSans.variable}`}>
+                <body className={`flex min-h-screen bg-background text-foreground font-dm flex-col md:flex-row m-0 ${cormorant.variable} ${syne.variable} ${dmSans.variable}`}>
                     
                     {/* SIDEBAR — solo visible en desktop */}
                     <aside className="hidden md:flex w-64 sticky top-0 h-screen bg-foreground text-white/90 flex-col border-r border-[#3a3a3a]">

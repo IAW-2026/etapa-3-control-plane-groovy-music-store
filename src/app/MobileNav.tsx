@@ -27,7 +27,7 @@ export default function MobileNav({ navItems, displayName }: MobileNavProps) {
                     <h1 className="font-syne text-lg font-bold tracking-wider text-white m-0">
                         GROOVY
                     </h1>
-                    <span className="text-[#B83A15] text-[10px] font-bold uppercase tracking-[0.15em]">
+                    <span className="text-[#F27A59] text-[10px] font-bold uppercase tracking-[0.15em]">
                         Control Plane
                     </span>
                 </div>
@@ -81,7 +81,7 @@ export default function MobileNav({ navItems, displayName }: MobileNavProps) {
                 <div className="px-4 py-3 border-t border-[#3a3a3a] flex items-center justify-between">
                     <span className="text-xs text-white/60">Sesión: {displayName}</span>
                     <SignOutButton redirectUrl="/sign-in">
-                        <button className="text-xs text-[#B83A15] font-bold uppercase hover:bg-[#B83A15]/10 px-3 py-1.5 rounded-lg transition-colors">
+                        <button className="text-xs text-[#F27A59] font-bold uppercase hover:bg-[#F27A59]/10 px-3 py-1.5 rounded-lg transition-colors">
                             Cerrar sesión
                         </button>
                     </SignOutButton>
