@@ -24,7 +24,7 @@ Para probar las funcionalidades de la plataforma con el rol de superadministrado
 
 ---
 
-## Breve descripción del proyecto
+## Breve descripción del proyecto 
 
 Control Plane es una webapp desarrollada de forma colaborativa que funciona como el panel de administración global e integrado para todo el ecosistema de Groovy Music Store. La idea principal es centralizar las operaciones de alto nivel, dejando que un superadministrador pueda supervisar y gestionar varios microservicios desde un solo lugar.
 
